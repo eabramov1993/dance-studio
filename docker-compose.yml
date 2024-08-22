@@ -8,7 +8,60 @@ services:
     depends_on:
       - db
 
-  # ... другие сервисы ... (добавьте аналогичные описания для остальных сервисов)
+  student-service:
+    build: ./student-service
+    ports:
+      - "8082:8080"
+    depends_on:
+      - db
+
+  attendance-service:
+    build: ./attendance-service
+    ports:
+      - "8083:8080"
+    depends_on:
+      - db
+
+  performance-service:
+    build: ./performance-service
+    ports:
+      - "8084:8080"
+    depends_on:
+      - db
+
+  event-service:
+    build: ./event-service
+    ports:
+      - "8085:8080"
+    depends_on:
+      - db
+
+  payment-service:
+    build: ./payment-service
+    ports:
+      - "8086:8080"
+    depends_on:
+      - db
+
+  notification-service:
+    build: ./notification-service
+    ports:
+      - "8087:8080"
+    depends_on:
+      - db
+
+  api-gateway:
+    build: ./api-gateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user-service
+      - student-service
+      - attendance-service
+      - performance-service
+      - event-service
+      - payment-service
+      - notification-service
 
   db:
     image: postgres:16-alpine
