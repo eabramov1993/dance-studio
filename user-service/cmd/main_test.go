@@ -5,12 +5,15 @@ import (
 	"testing"
 
 	"github.com/eabramov1993/dance-studio/tree/main/user-service/models"
-	"github.com/eabramov1993/dance-studio/tree/main/user-service/repository"
+
+	"github.com/eabramov1993/dance-studio/tree/main/user-service/user_repository"
+
+	_ "github.com/lib/pq"
 )
 
 func TestCreateUser(t *testing.T) {
 	// Настройка подключения к базе данных (замените на ваши данные)
-	db, err := sql.Open("postgres", "postgres://postgres:Aspirine1@localhost:5433/dance_studio?sslmode=disable")
+	db, err := sql.Open("postgres", "postgres://postgres:Aspirine1@localhost:5432/dance_studio?sslmode=disable")
 	if err != nil {
 		t.Fatalf("Ошибка при подключении к базе данных: %v", err)
 	}
@@ -26,7 +29,7 @@ func TestCreateUser(t *testing.T) {
 	}
 
 	// Вызов функции CreateUser
-	err = repository.CreateUser(db, newUser)
+	err = user_repository.CreateUser(db, newUser)
 	if err != nil {
 		t.Fatalf("Ошибка при создании пользователя: %v", err)
 	}
