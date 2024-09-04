@@ -21,7 +21,7 @@ func TestCreateUser(t *testing.T) {
 
 	// Создание тестового пользователя
 	newUser := &models.User{
-		Name:        "Тестовый Пользователь",
+		Name:        "123456",
 		Email:       "test@example.com",
 		Password:    "testpassword",
 		Role:        "родитель",
